@@ -26,11 +26,19 @@
       </div>  
       <p class="IU-text" style="margin-left: 38px">U</p>          
     </div>    
-
-    <audio autoplay loop>
-      <source src="song.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
-    </audio>
+  </body>
+    <script>
+      var audio = new Audio('https://raw.githubusercontent.com/ComfyChris/VeesSecretValentine/refs/heads/main/song.mp3');
+      audio.loop = true; // Enable looping
+      audio.volume = 0.5; // Set volume to 50%
+    
+      document.addEventListener('click', function playAudioOnce() {
+        audio.play().catch(error => console.log('Autoplay blocked:', error));
+        document.removeEventListener('click', playAudioOnce);
+      });
+    </script>
+  
+  
 
     <script>
       const images = [
