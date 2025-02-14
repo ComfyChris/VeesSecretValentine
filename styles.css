@@ -1,0 +1,191 @@
+
+@keyframes moveGradient {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 100% 0%;
+  }
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: calc(100vh - 20px);
+    background-size: cover; /* Ensure it covers the whole screen */
+    background-position: center;
+    font-family: 'Playfair Display', serif;
+    color: white;
+    transition: background-image 1s ease-in-out; /* Smooth transition */
+    overflow: hidden;
+    background-color: black;
+  }
+
+ /* Dark Overlay */
+ .overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.75); /* 50% black overlay */
+  z-index: -1;
+}
+
+
+.heart-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  height: 200px;
+}
+
+.heart {
+  display: inline-block;
+  width: 200px;
+  aspect-ratio: 1;
+  border-image: radial-gradient(red 69%, #0000 70%) 84.5%/50%;
+  clip-path: polygon(-41% 0, 50% 91%, 141% 0);
+  transition: transform 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.heart-shadow {
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  top: -20px;
+  background: red;
+  border-radius: 50%;
+  filter: blur(20px);
+  opacity: 0.5;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  z-index: -1;
+}
+
+/* Hover Effect */
+.heart-container:hover .heart {
+  transform: scale(1.2);
+}
+
+.heart-container:hover .heart-shadow {
+  transform: scale(1.4);
+  opacity: 0.6;
+}
+
+/* Click Effect */
+.heart-container.clicked .heart {
+  transform: scale(1.3);
+}
+
+.heart-container.clicked .heart-shadow {
+  transform: scale(1.6);
+  opacity: 0.7;
+}
+
+
+.heart.clicked > .heart-text {
+  color: white !important;
+}
+
+.heart-text {
+  margin-top: 50px;
+  font-size: 20px;
+  font-weight: 800;
+  user-select: none;
+  color: red;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  margin: 0;
+  margin-top: 35px;
+  padding: 0;
+}
+
+canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: calc(100% - 20px); /* Reduce width to avoid scrollbars */
+  height: calc(100% - 20px); /* Reduce height to avoid scrollbars */
+  pointer-events: none;
+  z-index: -2;
+}
+
+.instructions {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  user-select: none;
+  pointer-events: none;
+  color: white;
+  font-size: 14px;
+  transform: translate(-50%, 20px);
+  transition: all 0.3s ease;
+  text-align: center;
+  opacity: 0;
+}
+
+.heart:hover .instructions {
+  transform: translate(-50%, -40px);
+  opacity: 1;
+}
+
+/* On mobile devices, show the intructions by default (mobile can't hover) */
+@media (max-width: 600px) {
+  .instructions {
+    transform: translate(-50%, -40px);
+    opacity: 1;
+  }
+}
+
+.heart.clicked .instructions {
+  opacity: 0;
+}
+
+.IU-text {
+  color: white;
+  font-size: 192px;
+}
+
+.snow, .snow:before, .snow:after {
+  position: absolute;
+  top: -600px;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-image: radial-gradient(4px 4px at 421px 471px, rgba(255, 255, 255, 0.9) 50%, rgba(0, 0, 0, 0)), radial-gradient(3px 3px at 294px 470px, rgba(255, 255, 255, 0.7) 50%, rgba(0, 0, 0, 0)), radial-gradient(3px 3px at 395px 57px, rgba(255, 255, 255, 0.7) 50%, rgba(0, 0, 0, 0)), radial-gradient(4px 4px at 64px 124px, rgba(255, 255, 255, 1) 50%, rgba(0, 0, 0, 0)), radial-gradient(5px 5px at 567px 25px, rgba(255, 255, 255, 0.7) 50%, rgba(0, 0, 0, 0)), radial-gradient(6px 6px at 223px 220px, rgba(255, 255, 255, 0.8) 50%, rgba(0, 0, 0, 0)), radial-gradient(3px 3px at 32px 196px, rgba(255, 255, 255, 0.9) 50%, rgba(0, 0, 0, 0)), radial-gradient(4px 4px at 388px 6px, rgba(255, 255, 255, 1) 50%, rgba(0, 0, 0, 0)), radial-gradient(4px 4px at 268px 435px, rgba(255, 255, 255, 0.6) 50%, rgba(0, 0, 0, 0)), radial-gradient(5px 5px at 311px 514px, rgba(255, 255, 255, 0.6) 50%, rgba(0, 0, 0, 0)), radial-gradient(4px 4px at 322px 555px, rgba(255, 255, 255, 0.7) 50%, rgba(0, 0, 0, 0)), radial-gradient(3px 3px at 415px 253px, rgba(255, 255, 255, 1) 50%, rgba(0, 0, 0, 0)), radial-gradient(3px 3px at 376px 361px, rgba(255, 255, 255, 0.8) 50%, rgba(0, 0, 0, 0)), radial-gradient(6px 6px at 214px 89px, rgba(255, 255, 255, 0.7) 50%, rgba(0, 0, 0, 0)), radial-gradient(5px 5px at 204px 169px, rgba(255, 255, 255, 0.7) 50%, rgba(0, 0, 0, 0)), radial-gradient(3px 3px at 388px 354px, rgba(255, 255, 255, 0.6) 50%, rgba(0, 0, 0, 0)), radial-gradient(4px 4px at 92px 442px, rgba(255, 255, 255, 0.7) 50%, rgba(0, 0, 0, 0)), radial-gradient(3px 3px at 243px 9px, rgba(255, 255, 255, 1) 50%, rgba(0, 0, 0, 0)), radial-gradient(4px 4px at 222px 303px, rgba(255, 255, 255, 1) 50%, rgba(0, 0, 0, 0)), radial-gradient(4px 4px at 332px 195px, rgba(255, 255, 255, 1) 50%, rgba(0, 0, 0, 0)), radial-gradient(6px 6px at 55px 30px, rgba(255, 255, 255, 1) 50%, rgba(0, 0, 0, 0)), radial-gradient(6px 6px at 482px 55px, rgba(255, 255, 255, 0.8) 50%, rgba(0, 0, 0, 0)), radial-gradient(5px 5px at 476px 138px, rgba(255, 255, 255, 1) 50%, rgba(0, 0, 0, 0)), radial-gradient(4px 4px at 216px 153px, rgba(255, 255, 255, 0.6) 50%, rgba(0, 0, 0, 0)), radial-gradient(3px 3px at 509px 19px, rgba(255, 255, 255, 0.7) 50%, rgba(0, 0, 0, 0)), radial-gradient(3px 3px at 158px 538px, rgba(255, 255, 255, 1) 50%, rgba(0, 0, 0, 0)), radial-gradient(5px 5px at 94px 18px, rgba(255, 255, 255, 0.6) 50%, rgba(0, 0, 0, 0)), radial-gradient(4px 4px at 143px 59px, rgba(255, 255, 255, 0.8) 50%, rgba(0, 0, 0, 0)), radial-gradient(4px 4px at 456px 206px, rgba(255, 255, 255, 0.9) 50%, rgba(0, 0, 0, 0)), radial-gradient(4px 4px at 441px 169px, rgba(255, 255, 255, 0.9) 50%, rgba(0, 0, 0, 0)), radial-gradient(3px 3px at 343px 140px, rgba(255, 255, 255, 0.9) 50%, rgba(0, 0, 0, 0)), radial-gradient(4px 4px at 295px 429px, rgba(255, 255, 255, 0.9) 50%, rgba(0, 0, 0, 0)), radial-gradient(3px 3px at 475px 557px, rgba(255, 255, 255, 0.8) 50%, rgba(0, 0, 0, 0)), radial-gradient(5px 5px at 206px 521px, rgba(255, 255, 255, 0.9) 50%, rgba(0, 0, 0, 0)), radial-gradient(4px 4px at 459px 131px, rgba(255, 255, 255, 1) 50%, rgba(0, 0, 0, 0)), radial-gradient(4px 4px at 586px 446px, rgba(255, 255, 255, 0.8) 50%, rgba(0, 0, 0, 0)), radial-gradient(4px 4px at 195px 139px, rgba(255, 255, 255, 0.8) 50%, rgba(0, 0, 0, 0)), radial-gradient(3px 3px at 347px 93px, rgba(255, 255, 255, 0.8) 50%, rgba(0, 0, 0, 0)), radial-gradient(6px 6px at 215px 253px, rgba(255, 255, 255, 1) 50%, rgba(0, 0, 0, 0)), radial-gradient(5px 5px at 40px 432px, rgba(255, 255, 255, 0.6) 50%, rgba(0, 0, 0, 0)), radial-gradient(6px 6px at 390px 454px, rgba(255, 255, 255, 0.7) 50%, rgba(0, 0, 0, 0)), radial-gradient(3px 3px at 456px 108px, rgba(255, 255, 255, 0.6) 50%, rgba(0, 0, 0, 0)), radial-gradient(3px 3px at 250px 492px, rgba(255, 255, 255, 1) 50%, rgba(0, 0, 0, 0)), radial-gradient(4px 4px at 296px 151px, rgba(255, 255, 255, 0.6) 50%, rgba(0, 0, 0, 0)), radial-gradient(6px 6px at 171px 523px, rgba(255, 255, 255, 0.8) 50%, rgba(0, 0, 0, 0)), radial-gradient(6px 6px at 399px 355px, rgba(255, 255, 255, 0.7) 50%, rgba(0, 0, 0, 0)), radial-gradient(5px 5px at 19px 316px, rgba(255, 255, 255, 0.8) 50%, rgba(0, 0, 0, 0)), radial-gradient(4px 4px at 98px 50px, rgba(255, 255, 255, 1) 50%, rgba(0, 0, 0, 0)), radial-gradient(3px 3px at 298px 408px, rgba(255, 255, 255, 0.7) 50%, rgba(0, 0, 0, 0)), radial-gradient(3px 3px at 428px 484px, rgba(255, 255, 255, 1) 50%, rgba(0, 0, 0, 0)), radial-gradient(3px 3px at 353px 558px, rgba(255, 255, 255, 0.9) 50%, rgba(0, 0, 0, 0)), radial-gradient(3px 3px at 24px 438px, rgba(255, 255, 255, 1) 50%, rgba(0, 0, 0, 0)), radial-gradient(3px 3px at 539px 80px, rgba(255, 255, 255, 1) 50%, rgba(0, 0, 0, 0)), radial-gradient(3px 3px at 131px 479px, rgba(255, 255, 255, 0.8) 50%, rgba(0, 0, 0, 0)), radial-gradient(3px 3px at 182px 525px, rgba(255, 255, 255, 0.7) 50%, rgba(0, 0, 0, 0)), radial-gradient(6px 6px at 559px 426px, rgba(255, 255, 255, 0.6) 50%, rgba(0, 0, 0, 0)), radial-gradient(5px 5px at 312px 76px, rgba(255, 255, 255, 0.6) 50%, rgba(0, 0, 0, 0)), radial-gradient(4px 4px at 371px 56px, rgba(255, 255, 255, 0.8) 50%, rgba(0, 0, 0, 0)), radial-gradient(5px 5px at 88px 279px, rgba(255, 255, 255, 1) 50%, rgba(0, 0, 0, 0)), radial-gradient(3px 3px at 147px 543px, rgba(255, 255, 255, 0.6) 50%, rgba(0, 0, 0, 0)), radial-gradient(5px 5px at 471px 465px, rgba(255, 255, 255, 0.7) 50%, rgba(0, 0, 0, 0)), radial-gradient(3px 3px at 259px 476px, rgba(255, 255, 255, 0.6) 50%, rgba(0, 0, 0, 0)), radial-gradient(4px 4px at 458px 27px, rgba(255, 255, 255, 0.7) 50%, rgba(0, 0, 0, 0)), radial-gradient(3px 3px at 408px 142px, rgba(255, 255, 255, 1) 50%, rgba(0, 0, 0, 0)), radial-gradient(4px 4px at 122px 573px, rgba(255, 255, 255, 0.6) 50%, rgba(0, 0, 0, 0)), radial-gradient(3px 3px at 490px 14px, rgba(255, 255, 255, 1) 50%, rgba(0, 0, 0, 0)), radial-gradient(4px 4px at 583px 45px, rgba(255, 255, 255, 0.6) 50%, rgba(0, 0, 0, 0)), radial-gradient(6px 6px at 29px 40px, rgba(255, 255, 255, 0.7) 50%, rgba(0, 0, 0, 0)), radial-gradient(6px 6px at 55px 504px, rgba(255, 255, 255, 0.9) 50%, rgba(0, 0, 0, 0)), radial-gradient(4px 4px at 267px 77px, rgba(255, 255, 255, 0.6) 50%, rgba(0, 0, 0, 0));
+  background-size: 600px 600px;
+  animation: snow 3s linear infinite;
+  content: "";
+}
+
+.snow:after {
+  margin-left: -200px;
+  opacity: 0.4;
+  animation-duration: 6s;
+  animation-direction: reverse;
+  filter: blur(3px);
+}
+.snow:before {
+  animation-duration: 9s;
+  animation-direction: reverse;
+  margin-left: -300px;
+  opacity: 0.65;
+  filter: blur(1.5px);
+}
+@keyframes snow {
+  to {
+    transform: translateY(600px);
+  }
+}

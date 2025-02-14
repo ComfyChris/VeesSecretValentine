@@ -1,0 +1,111 @@
+<html>
+  <head>
+    <title>För mitt allt ❤️</title>
+    <link rel="icon" type="image/png" href="../../favicon_32_32_compress.ico" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta
+      name="description"
+      content="Happy Valentine's Day!"
+    />
+    <link rel="stylesheet" href="styles.css"></lin>
+  </head>
+  <body>
+    <div class="overlay"></div>
+    <div class="snow"></div>
+    <div class="center">
+      <p class="IU-text" style="margin-right: 50px">I</p>
+      <div class="heart-container">
+        <div class="heart-shadow"></div> <!-- Shadow is outside the heart -->
+        <div class="heart" onclick="toggle(this)">
+          <p id="textInner" class="heart-text" style="opacity: 0; display: none">
+            HAPPY VALENTINE'S
+          </p>
+        </div>
+      </div>  
+      <p class="IU-text" style="margin-left: 38px">U</p>          
+    </div>    
+
+    <audio autoplay loop>
+      <source src="https://drive.google.com/file/d/1Z4RMN9TJSkOQ9GaiMOWpvcqfmdibyLkS/" type="audio/mpeg">
+    Your browser does not support the audio element.
+    </audio>
+
+    <script>
+      const images = [
+        "url('images/1.png')",
+        "url('images/2.png')",
+        "url('images/3.png')",
+        "url('images/4.png')",
+        "url('images/5.png')",
+        "url('images/6.png')",
+        "url('images/7.png')",
+        "url('images/8.png')",
+        "url('images/9.png')",
+        "url('images/10.png')",
+        "url('images/11.png')",
+        "url('images/12.png')",
+        "url('images/13.png')",
+        "url('images/14.png')",
+      ];
+  
+      let index = 0;
+      function changeBackground() {
+        document.body.style.backgroundImage = images[index];
+        document.body.style.backgroundSize = "auto 120vh"; // Fit height while maintaining aspect ratio
+        document.body.style.backgroundPosition = "center";
+        document.body.style.backgroundRepeat = "no-repeat";
+
+        index = (index + 1) % images.length;
+      }
+  
+      setInterval(changeBackground, 5000); // Change every 5 seconds
+      window.onload = changeBackground; // Set first image on load
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@latest"></script>
+    <script>
+      function toggle(element) {
+        element.classList.toggle("clicked");
+        if (element.classList.contains("clicked")) {
+          document.getElementById("textInner").style.display = "block";
+          setTimeout(() => {
+            document.getElementById("textInner").style.opacity = "1";
+          }, 100);
+          createConfetti();
+        } else {
+          document.getElementById("textInner").style.opacity = "0";
+          setTimeout(() => {
+            document.getElementById("textInner").style.display = "none";
+          }, 300);
+        }
+      }
+
+      function createConfetti() {
+        // Create a canvas element and get its context
+        const canvas = document.createElement("canvas");
+        const context = canvas.getContext("2d");
+
+        // Define the emoji shape
+        const emojiShape = confetti.shapeFromText({
+          text: "❤️", // You can use any emoji here
+          scalar: 3,
+        });
+
+        // Call the confetti function with the emoji shape and other options
+        confetti({
+          particleCount: 225, // You can change the number of confetti particles
+          scalar: 4, // Make it a bit larger
+          angle: 90, // You can change the angle of the confetti launch
+          spread: 360, // You can change the spread of the confetti launch
+          startVelocity: 25, // You can change the initial velocity of the confetti particles
+          decay: 0.95, // You can change the decay rate of the confetti particles
+          shapes: [emojiShape], // You can pass an array of shapes to use as confetti particles
+          origin: { x: 0.5, y: 0.4 }, // You can change the origin of the confetti launch
+          zIndex: -1, // You can change the z-index of the confetti canvas
+        });
+      }
+    </script>
+  </body>
+</html>
